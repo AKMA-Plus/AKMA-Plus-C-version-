@@ -12,6 +12,8 @@ cd UE/Debug
 make
 cd ../../HN/Debug
 make
+cd ../../AF/Debug
+make
 ```
 
 ## how to run
@@ -24,7 +26,7 @@ You can see "waiting on port 50001" in the terminal, please don't close the term
 Open a new terminal
 * run AF
 ```sh
-cd HN/Debug
+cd AF/Debug
 ./AF
 ```
 You can see "waiting on port 50002" in the terminal, please don't close the terminal.  
