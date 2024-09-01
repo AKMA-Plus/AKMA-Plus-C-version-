@@ -10,21 +10,21 @@
 ```sh
 cd UE/Debug
 make
-cd ../../SEAF/Debug
+cd ../../HN/Debug
 make
 ```
 
 ## how to run
-* run SEAF
+* run HN
 ```sh
-cd SEAF/Debug
-./SEAF
+cd HN/Debug
+./HN
 ```
 You can see "waiting on port 50001" in the terminal, please don't close the terminal.  
 Open a new terminal
 * run AF
 ```sh
-cd SEAF/Debug
+cd HN/Debug
 ./AF
 ```
 You can see "waiting on port 50002" in the terminal, please don't close the terminal.  
