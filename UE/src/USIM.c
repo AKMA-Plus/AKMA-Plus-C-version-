@@ -228,7 +228,6 @@ void generateECIES(){
 	printf("UE_ECIES_Pubkey[%lu]: \n",UE_ECIES_Pubkey_len);
 	BIO_dump_fp(stdout,  (const char *)UE_ECIES_Pubkey, UE_ECIES_Pubkey_len);
 
-	// EC_POINT_free(ecpoint); //can not free, otherwise s_UE_ECIES_pkey could not free.
     BN_CTX_free(ctx);
     EC_KEY_free(eckey);
     EC_GROUP_free(ecgroup);
@@ -310,8 +309,6 @@ void getECIES_Shared_Secret_Key(EVP_PKEY *ECIES_pkey,
 	EVP_PKEY_CTX_free(ctx);
 	EVP_PKEY_free(peerkey);
 
-	/* Never use a derived secret directly. Typically it is passed
-	 * through some hash function to produce a key */
 	// *secret_len = secretLength;
 	// return secret;
 
@@ -616,8 +613,6 @@ unsigned char *getSharedSecret(size_t *secret_len, suci_t *suci_ecc)
 	EVP_PKEY_CTX_free(kctx);
 	EVP_PKEY_free(params);
 	EVP_PKEY_CTX_free(pctx);
-	/* Never use a derived secret directly. Typically it is passed
-	 * through some hash function to produce a key */
 	*secret_len = secretLength;
 
 	// TODO: sharedsecret doesn't work -> fixed secret
@@ -687,7 +682,6 @@ void kdf(unsigned char *sharedSecret, uint8_t sslen, size_t *keydatalen, char *s
 		// printf("hashinput: %s\n", hashinput);
 		unsigned char tmp[5];
 		sprintf(tmp, "%04x", counter);
-		// strncat(hashinput, tmp, 4);//here is a problem, hashinput is not a null-terminal string
 		memcpy(hashinput + sslen, tmp, 4);
 		// strncat(hashinput, sharedinfo, silen);
 
@@ -1535,7 +1529,7 @@ unsigned char *getSharedKey(EVP_PKEY *pkey, unsigned char *peer_pubkey, size_t *
 	EC_GROUP_free(peer_ecgroup);
 	// EC_KEY_free(peer_eckey);
 	EC_POINT_free(peer_point);
-	// EVP_PKEY_CTX_free(ctx);  // ctx can not free
+	// EVP_PKEY_CTX_free(ctx);
 
 	return sharedSecret;
 }

@@ -35,7 +35,7 @@ static udm_akid_pair_t udm_akid_pair_db[udm_akid_pair_max_size];
 // Dataset for one UE
 typedef struct{
 	supi_t supi;			// SUPI for
-	uint8_t authMethod;		// Authentication methode. 5G-AKA or EAP'-AKA
+	uint8_t authMethod;		// Authentication methode.
 	uint8_t sqn[6];			// Sequence number
 	uint8_t key[SIZE_K]; 	// 128 (or 256) bits long, long-term key
 } ue_unit_t;
@@ -492,7 +492,7 @@ void Nudm_UEAuthenticationRequest(he_av_t* av, suci_t* suci, sn_name_t* sn_name)
 #ifdef measure
 	printf("Tin: %lu \n",clock_gettime_nsec_np_1(CLOCK_PROCESS_CPUTIME_ID));
 #endif
-	// Important delay. If this is not here, the programm crash
+	// Important delay.
 	// for(int i=0; i<sizeof(suci->ecc_pub_key);i++){
 		//		printf("%x", suci->ecc_pub_key[i]);
 	// }

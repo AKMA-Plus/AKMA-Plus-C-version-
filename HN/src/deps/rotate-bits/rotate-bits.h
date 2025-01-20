@@ -25,7 +25,7 @@
 #define ROTL32(v, n) \
   (U32V((uint32_t)(v) << (n)) | ((uint32_t)(v) >> (32 - (n))))
 
-// tests fail if we don't have this cast...
+
 #define ROTL64(v, n) \
   (U64V((uint64_t)(v) << (n)) | ((uint64_t)(v) >> (64 - (n))))
 

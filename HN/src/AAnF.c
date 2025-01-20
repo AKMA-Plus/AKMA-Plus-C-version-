@@ -103,7 +103,6 @@ void generateRSAKey2() {
     printf("\n%s\n", PK_AAnF);
     printf("\nAAnF print prv_len = %d \n", SK_AAnF_len);
     printf("\n%s\n", SK_AAnF);
-    // EVP_PKEY_CTX_free(rsa_ctx);  //it cannot free
     BIO_free(PK_AAnF_bio);
     BIO_free(SK_AAnF_bio);
     BN_free(exponent_bn);

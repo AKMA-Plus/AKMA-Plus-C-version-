@@ -157,8 +157,6 @@ unsigned char* getSharedSecret(size_t *secret_len, unsigned char* pubkey, size_t
 	EVP_PKEY_CTX_free(ctx);
 	EVP_PKEY_free(peerkey);
 
-	/* Never use a derived secret directly. Typically it is passed
-	 * through some hash function to produce a key */
 	*secret_len = secretLength;
 
 	//TODO: sharedsecret doesn't work -> fixed secret
@@ -228,7 +226,6 @@ void kdf(unsigned char *sharedSecret, uint8_t sslen, size_t* keydatalen, char *s
 		//printf("hashinput: %s\n", hashinput);
 		unsigned char tmp[5];
 		sprintf(tmp, "%04x", counter);
-		// strncat(hashinput, tmp, 4); //here is a problem, hashinput is not a null-terminal string
 		memcpy(hashinput + sslen, tmp, 4);
 
 
@@ -649,9 +646,7 @@ unsigned char * getSharedKey(EVP_PKEY *pkey, unsigned char * peer_pubkey, size_t
 
     EVP_PKEY_free(peer_pkey);
     EC_GROUP_free(peer_ecgroup);
-    // EC_KEY_free(peer_eckey);   // peer_eckey can not free, program will corrupt
     EC_POINT_free(peer_point);
-    // EVP_PKEY_CTX_free(ctx);  // ctx can not free, program will corrupt
 
     return sharedSecret;
     

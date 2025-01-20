@@ -386,7 +386,6 @@ void generateRSAKey2()
 #ifdef DebugAkmaInfo
     printf("\nAF pub_len = %d \n", PK_AF_len);
     printf("\n%s\n", PK_AF);
-    // EVP_PKEY_CTX_free(rsa_ctx);  //it cannot free, otherwise the AF will crash
 #endif
     BIO_free(PK_AF_bio);
     BN_free(exponent_bn);
@@ -484,7 +483,6 @@ void generateECIES()
     printf("AF_ECIES_Pubkey[%lu]: \n", AF_ECIES_Pubkey_len);
     BIO_dump_fp(stdout, (const char *)AF_ECIES_Pubkey, AF_ECIES_Pubkey_len);
 
-    // EC_POINT_free(ecpoint); //can not free, otherwise s_UE_ECIES_pkey could not free.
     BN_CTX_free(ctx);
     EC_KEY_free(eckey);
     EC_GROUP_free(ecgroup);
@@ -558,9 +556,6 @@ void getECIES_Shared_Secret_Key(EVP_PKEY *ECIES_pkey,
 #endif
 	EVP_PKEY_CTX_free(ctx);
 	EVP_PKEY_free(peerkey);
-
-	/* Never use a derived secret directly. Typically it is passed
-	 * through some hash function to produce a key */
 
     // *secret_len = secretLength;
 	// return secret;
